@@ -2,6 +2,8 @@
 
 Official firmware updates for **Plane Radar** devices (ESP32-S3, 3.5" touch display).
 
+New to your Plane Radar? See the **[Quick Start guide](QUICKSTART.md)**.
+
 This repository contains only signed firmware binaries. Devices check here
 automatically once a day and install updates on their own — no action needed.
 You can also trigger a check manually on the device under
@@ -31,3 +33,4 @@ of these files.
 This firmware is built with open-source components, used under their
 respective licenses: ESP-IDF / Arduino-ESP32 (Apache-2.0), LovyanGFX (MIT),
 WiFiManager (MIT), ArduinoJson (MIT), mbedTLS (Apache-2.0).
+

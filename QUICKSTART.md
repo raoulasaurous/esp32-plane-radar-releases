@@ -54,4 +54,9 @@ update**. Updates are free and automatic — no computer needed, ever.
 - **Start completely fresh:** Settings → System → Factory reset erases
   everything and returns the radar to out-of-the-box state.
 
+The radar sends anonymous crash diagnostics (a random device ID, firmware
+version, and technical error details — never your location or WiFi info)
+to help improve the product. Your device's ID is shown under
+**Settings → System**.
+
 Happy spotting! ✈️

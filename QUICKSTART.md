@@ -10,15 +10,13 @@ power bank). The screen lights up on its own.
 
 ## 2. Connect it to your WiFi
 
-On first power-up the radar creates its own temporary WiFi network:
+First power-up walks you through setup right on the touchscreen:
 
-1. On your phone, open WiFi settings and join **PlaneRadar-Setup**.
-2. A setup page opens automatically (if not, browse to **192.168.4.1**).
-3. Pick your home WiFi network and enter its password.
-4. Set your location — allow the location prompt and it fills itself in,
-   or type coordinates. This is the centre of your radar.
-5. Choose your preferred units and what info each plane's label shows.
-6. Save. The radar restarts, joins your WiFi, and starts finding planes.
+1. Pick your home WiFi network from the on-screen list and type its
+   password on the touch keyboard.
+2. Set your location (postcode or coordinates) — this is the centre of
+   your radar.
+3. The radar connects and starts finding planes.
 
 ## 3. Using the radar
 

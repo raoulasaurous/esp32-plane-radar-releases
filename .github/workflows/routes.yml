@@ -1,0 +1,80 @@
+# TEMPLATE. This file lives in the firmware repo (tools/route_build/) and does
+# nothing here. Installed, it is .github/workflows/routes.yml in the PUBLIC
+# releases repo (esp32-plane-radar-releases), beside a copy of
+# build_routes.py at .github/route_build/build_routes.py. How to install it,
+# and what that publishes: tools/route_build/README.md. Installing it is an
+# outward action and needs Raoul's yes.
+#
+# Once a week: fetch the Virtual Radar Server routes (CC0), rebuild the shards
+# with the previous ones as --prev (so only the shards that moved change),
+# check them, and commit routes/v1 if anything changed. It uses the built-in
+# GITHUB_TOKEN with contents: write - no personal token is stored anywhere.
+name: VRS routes
+
+on:
+  schedule:
+    - cron: "23 4 * * 1"   # Mondays 04:23 UTC (off the hour: the busiest time)
+  workflow_dispatch: {}    # the "Run workflow" button, for a first run or a fix
+
+# This workflow's token only. The repo's default ("Workflow permissions" in
+# Settings > Actions) can stay read-only; do not widen it for this.
+permissions:
+  contents: write
+
+concurrency:
+  group: vrs-routes
+  cancel-in-progress: false
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    timeout-minutes: 15
+    steps:
+      - name: Check out the releases repo
+        uses: actions/checkout@v4
+        with:
+          fetch-depth: 1
+
+      - name: Fetch VRS standing data (routes only)
+        run: |
+          git clone -q --depth 1 --filter=blob:none --sparse \
+            https://github.com/vradarserver/standing-data.git "$RUNNER_TEMP/sd"
+          git -C "$RUNNER_TEMP/sd" sparse-checkout set routes/schema-01
+          git -C "$RUNNER_TEMP/sd" log -1 --format='standing-data %h, %cd' --date=short
+
+      - name: Build and check
+        run: |
+          PREV=""
+          if [ -f routes/v1/meta.txt ]; then PREV="--prev routes/v1"; fi
+          python3 -I .github/route_build/build_routes.py "$RUNNER_TEMP/sd" "$RUNNER_TEMP/out" $PREV
+          python3 -I .github/route_build/build_routes.py --check "$RUNNER_TEMP/out"
+          # A set that passes --check can still be most of the data gone (an
+          # upstream accident, a half-empty clone). Refuse a fall of more than
+          # a fifth in routes or files: the run fails, GitHub emails Raoul, and
+          # the radars keep last week's set.
+          if [ -f routes/v1/meta.txt ]; then
+            for k in routes files; do
+              old=$(sed -n "s/^$k //p" routes/v1/meta.txt)
+              new=$(sed -n "s/^$k //p" "$RUNNER_TEMP/out/meta.txt")
+              if [ -z "$new" ] || [ "$new" -lt $(( old * 8 / 10 )) ]; then
+                echo "REFUSED: $k fell from $old to ${new:-nothing} - not publishing"
+                exit 1
+              fi
+            done
+          fi
+
+      - name: Commit if anything changed
+        run: |
+          rm -rf routes/v1
+          mkdir -p routes
+          cp -R "$RUNNER_TEMP/out" routes/v1
+          git add -A routes
+          if git diff --cached --quiet; then
+            echo "routes unchanged"
+            exit 0
+          fi
+          DS=$(sed -n 's/^dataset //p' routes/v1/meta.txt)
+          git -c user.name="github-actions[bot]" \
+              -c user.email="41898282+github-actions[bot]@users.noreply.github.com" \
+              commit -q -m "routes: VRS standing data $DS (CC0)"
+          git push -q origin HEAD:main

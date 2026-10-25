@@ -1,0 +1,12 @@
+#vrs1 meta
+dataset 20261025
+source https://github.com/vradarserver/standing-data
+commit bf605979571dd87a325e8ffe314b606af3fcba1b
+routes 620877
+airlines 1510
+files 8175
+bytes 9416003
+max_file 24160
+dropped_callsign 59
+dropped_airports 19
+dropped_conflicts 0

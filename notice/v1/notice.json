@@ -1,11 +1,11 @@
 {
  "v": 1,
  "ch": "v1",
- "id": "n202610281635",
- "issued": 1793205312,
- "until": 1794414912,
+ "id": "n202610281705",
+ "issued": 1793207153,
+ "until": 1794416753,
  "short": "Update: please read",
- "text": "Please do not install the 1.1.96 update from the prompt (tap Later): on this version (1.1.95) it fails. These steps may work instead:\n1. Settings > Map: off.\n2. Set the range to 1.\n3. Unplug the radar for 10 seconds and plug it in.\n4. Settings > System > Check for update, then Install.\nIf this does not work, unplug for 10 seconds, plug in, and stay on 1.1.95. I am looking into a fix.",
+ "text": "Please do not install the 1.1.96 update from the prompt (tap Later). Do the below (take a picture):\n1. Settings > Map: off.\n2. Set the range to 1.\n3. Unplug the radar for 10 seconds and plug it in.\n4. Settings > System > Check for update, then Install.\n\nIf this does not work, unplug for 10 seconds, plug in, and stay on 1.1.95. We will reach out with a solution.",
  "fw_min": "1.1.95",
  "fw_max": "1.1.95"
 }

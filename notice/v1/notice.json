@@ -1,0 +1,11 @@
+{
+ "v": 1,
+ "ch": "v1",
+ "id": "n202610281557",
+ "issued": 1793203053,
+ "until": 1794412653,
+ "short": "Update may fail: read me",
+ "text": "Updating to 1.1.96 may fail on this version (1.1.95). Please do not worry: your radar works as normal without it. We are working on a fix.\nIf the radar says 'No internet' or 'Network busy' after a failed update attempt, unplug it for 10 seconds and plug it in again.",
+ "fw_min": "1.1.95",
+ "fw_max": "1.1.95"
+}

@@ -1,0 +1,9 @@
+{
+ "v": 1,
+ "ch": "test",
+ "id": "n202610281542",
+ "issued": 1793202156,
+ "until": 1793212956,
+ "short": "Update fix: see notice",
+ "text": "The update to 1.1.96 cannot install from this radar. Your radar is fine. If it showed 'No internet' after a try, unplug it for 10 seconds.\nTo get the update, use the Wi-Fi updater from a phone or computer: message us and we send the steps.\nTo stop the update message: Settings > System > Update prompts off."
+}

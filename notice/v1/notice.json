@@ -1,11 +1,11 @@
 {
  "v": 1,
  "ch": "v1",
- "id": "n202610290817",
- "issued": 1793261851,
- "until": 1794385051,
+ "id": "n202611031334",
+ "issued": 1793712869,
+ "until": 1794922469,
  "short": "Update: please read",
- "text": "1.1.95 update instructions (take a picture)\n\n1. Settings > Map: off.\n2. Set the range to 1.\n3. Unplug the radar for 10 seconds and plug it in.\n4. Settings > System > Check for update, then Install.\n\nThis may take a few attempts (repeat 3 and 4).\n\nIf it still fails, unplug 10 seconds, plug in, stay on 1.1.95. We will reach out with a solution.",
+ "text": "1.1.95 update instructions\n\nA. By cable, go to\nwww.locklinestudio.com/\nradar/update\n& use password \"takeoff\"\n\nB. On the radar (may not always work):\n1. Settings > Map: off.\n2. Set the range to 1.\n3. Unplug 10 s, plug in.\n4. Settings > System > Check for update, then Install.\nRepeat 3 and 4 if it fails.",
  "fw_min": "1.1.95",
  "fw_max": "1.1.95"
 }
